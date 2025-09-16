@@ -33,7 +33,6 @@ Como executar
    streamlit run app/app.py
 
 Métricas de Avaliação
-- RMSE para modelos de regressão
 - Matriz de Confusão para modelos de classificação
 
 Documentação
