@@ -1,42 +1,42 @@
-Análise de Reclamações sobre Produtos Eletrônicos
+# Análise de Reclamações — Amazon Electronics (Sentimento)
 
-Contexto
-As avaliações online exercem grande influência nas decisões de compra de consumidores. Produtos com muitas reclamações podem impactar negativamente a reputação das marcas e reduzir suas vendas.
+Classificador binário (negativo/positivo) de reviews de produtos eletrônicos. Treino feito sobre dados em inglês (formato fastText).
 
-Este projeto utiliza o dataset Amazon Electronics Reviews como base para identificar e analisar os principais motivos de insatisfação dos clientes em produtos eletrônicos.
+ATENÇÃO SOBRE IDIOMA
+- O modelo foi treinado em inglês. Para melhor qualidade, teste com frases em inglês.
 
-Objetivo
-- Verificar quais produtos apresentam mais reclamações
-- Identificar os principais motivos de insatisfação relatados pelos clientes
-- Construir um modelo capaz de analisar automaticamente novas avaliações
-- Fornecer uma interface interativa em Streamlit para consulta dos resultados
+## Requisitos
+- Python 3.10+ (recomendado 3.12)
+- Pip/venv
+- Dependências em `requirements.txt`
 
-Tecnologias Utilizadas
-- Python 3.10+
-- Pandas / NumPy
-- Matplotlib / Seaborn
-- Scikit-learn
-- NLTK
-- Streamlit
-- SQLite
+## Setup do ambiente
+Windows:
+python -m venv venv
+.\venv\Scripts\activate
+pip install -r requirements.txt
 
 
-Como executar
-1. Ativar o ambiente virtual:
-   .\venv\Scripts\Activate.ps1   # PowerShell
-   venv\Scripts\activate.bat     # CMD
+## Como executar o app
+streamlit run app/app.py
 
-2. Instalar as dependências:
-   pip install -r requirements.txt
 
-3. Rodar a aplicação no Streamlit:
-   streamlit run app/app.py
+O app carrega artefatos de `notebooks/`:
+- pipeline.pkl  (recomendado)
+ou
+- modelo_treinado.pkl + vectorizer.pkl  (o app reconstrói um pipeline na inicialização)
 
-Métricas de Avaliação
-- Matriz de Confusão para modelos de classificação
+## Métricas (para relatório)
+- docs/classification_report.txt
+- docs/confusion_matrix.png
+Obs.: RMSE não se aplica a classificação. Use Accuracy, Precision, Recall, F1 e Matriz de Confusão.
 
-Documentação
-Toda a documentação adicional está localizada na pasta docs/, incluindo:
-- pmc.md 
-- architecture.md → Arquitetura do sistema
-- datamodel.md → Modelagem de dados (SOR, SOT, SPEC)
+## Estrutura do projeto (resumo)
+- app/                 → Streamlit (predição)
+- core/data/           → leitura, banco (SQLite utilitário), SQL (SOR/SOT/SPEC)
+- core/features/       → preprocessamento
+- notebooks/           → treino/experimentos + artefatos (.pkl)
+- docs/                → arquitetura, canvas, métricas
+- data/                → (opcional) amostras pequenas só para demonstração de treino local
+
+
