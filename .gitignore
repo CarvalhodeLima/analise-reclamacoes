@@ -1,0 +1,9 @@
+venv/
+__pycache__/
+.ipynb_checkpoints/
+reviews.db
+data/*
+!data/train.sample.ft.txt
+*.ft.txt
+*.csv
+*.tsv
